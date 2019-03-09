@@ -1,0 +1,7 @@
+<div>
+ <form (ngSubmit)="onSubmit()" [formGroup]="form">
+ <div *ngFor="let control of containerModel.getChildren()" class="form-row">
+      <input-element [component]="control" [form]="form"></input-element>
+    </div>
+</form>
+</div>

@@ -1,0 +1,7 @@
+<div [formGroup]="form" >
+  <label [attr.for]="component.key">{{component.label}}</label>
+    <input  [formControlName]="component.key"
+            [id]="component.key" [type]="text">
+
+  <div class="errorMessage" *ngIf="!isValid">{{component.label}} is required</div>
+</div>
