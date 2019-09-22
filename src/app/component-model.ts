@@ -1,15 +1,15 @@
 import {Node,ParentNode,ChildNode} from './Node';
 
-export  class ComponentBaseModel<T> implements Node{
-    value: T;
+export  class ComponentBaseModel implements Node{
+    value?;
     key: string;
-    label: string;
-    required: boolean;
-    order: number;
+    label?: string;
+    required : boolean = false;
+    order: number = 0;
     controlType: string;
   
     constructor(options: {
-        value?: T,
+        value?:any,
         key?: string,
         label?: string,
         required?: boolean,
@@ -20,14 +20,14 @@ export  class ComponentBaseModel<T> implements Node{
       this.key = options.key || '';
       this.label = options.label || '';
       this.required = !!options.required;
-      this.order = options.order === undefined ? 1 : options.order;
+      this.order = options.order === undefined ? 0 : options.order;
       this.controlType = options.controlType || '';
     }
   }
 
-  export class ComponentModel<T>  extends ComponentBaseModel<T> implements ChildNode{
+  export class ComponentModel<T>  extends ComponentBaseModel implements ChildNode{
       
-    container:ContainerModel<any>;
+    container?:ContainerModel<any>;
       
     getParent(): Node {
         return this.container;
@@ -35,15 +35,17 @@ export  class ComponentBaseModel<T> implements Node{
       
   } 
 
-export class ContainerModel<T>  extends ComponentBaseModel<T> implements ParentNode{
+export class ContainerModel<T>  extends ComponentBaseModel implements ParentNode{
 
     components:ComponentModel<any>[];
     
-    constructor(components:ComponentModel<any> [] ){
+    constructor(options){
         super();
-        this.components =components;
+        if(options && options.components){
+          this.components = options.components;
+        }
     }
-    getChildren(): Node[] {
+    getChildren(): ComponentModel<any>[] {
         return this.components;
     }
       

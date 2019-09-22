@@ -9,7 +9,7 @@ import { FormGroup }                 from '@angular/forms';
     templateUrl: './input-element.html'
   })
 export default class InputElement<T> extends FormControlElement<T>{
-    @Input() form: FormGroup= new FormGroup({});
+    @Input() form: FormGroup;
     @Input() component:ComponentModel<T>;
 
 constructor(){
