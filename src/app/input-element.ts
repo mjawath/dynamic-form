@@ -8,7 +8,7 @@ import { FormGroup }                 from '@angular/forms';
     selector: 'input-element',
     templateUrl: './input-element.html'
   })
-export default class InputElement<T> extends FormControlElement<T>{
+export  class InputElement<T> extends FormControlElement<T>{
     @Input() form: FormGroup;
     @Input() component:ComponentModel<T>;
 
